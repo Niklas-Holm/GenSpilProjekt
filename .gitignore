@@ -341,3 +341,7 @@ FodyWeavers.xsd
 *.exe
 *.out
 *.app
+
+# JetBrains Rider / IntelliJ project files
+.idea/
+*.iml
