@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Genspil
 {
-    internal class Inquiry
+    public class Inquiry
     {
+        private int id;
+        private String gameName;
+        private Customer customer;
     }
 }
