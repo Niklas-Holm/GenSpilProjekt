@@ -1,5 +1,16 @@
+
 namespace Genspil;
 
+enum Condition
+    {
+A,
+B,
+C,
+D,
+E,
+F
+
+}
 public class Game
 {
     private int id;
