@@ -1,26 +1,337 @@
+#######################################
+##     Visual Studio Git Ignore     ##
+##   Source: github/gitignore repo  ##
+#######################################
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+Generated\ Files/
+
+# MSTest & NUnit Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# ATL Build Results
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Compiled output files
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah
+_Chutzpah*
+
+# C++ Intellisense/cache
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Profiler and Trace
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.e2e
+
+# TFS
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# JetBrains ReSharper, TeamCity, DotCover
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+_TeamCity*
+*.dotCover
+
+# Code coverage
+.axoCover/*
+!.axoCover/settings.json
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+
+# NCrunch & MightyMoose
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+*.mm.*
+AutoTest.Net/
+
+# Web tools
+.sass-cache/
+
+# InstallShield
+[Ee]xpress/
+
+# DocProject
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2/
+DocProject/Help/html/
+
+# ClickOnce
+publish/
+
+# Publish profiles
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+PublishScripts/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Azure
+csx/
+*.build.csdef
+ecf/
+rcf/
+
+# UWP/Windows Store
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+
+# Caches
+*.[Cc]ache
+!?*.[Cc]ache/
+
+# Misc
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# RIA/Silverlight
+Generated_Code/
+
+# Upgrade logs
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+*.rptproj.bak
+
+# SQL Server
+*.mdf
+*.ldf
+*.ndf
+
+# BI Projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc
+*.GhostDoc.xml
+
+# Node.js (for Node.js Tools for VS)
+node_modules/
+.ntvs_analysis.dat
+
+# VS6
+*.plg
+*.opt
+*.vbw
+
+# LightSwitch
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions/
+
+# Paket
+.paket/paket.exe
+paket-files/
+
+# FAKE
+.fake/
+
+# CodeRush
+.cr/personal
+
+# Python (PTVS)
+__pycache__/
+*.pyc
+
+# Telerik JustMock
+*.jmconfig
+
+# BizTalk
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# OpenCover
+OpenCover/
+
+# Azure Stream Analytics
+ASALocalRun/
+
+# MSBuild logs
+*.binlog
+
+# NVIDIA Nsight
+*.nvuser
+
+# MFractor (Xamarin)
+.mfractor/
+
+# Visual Studio Local History
+.localhistory/
+
+# Healthcheck DB
+healthchecksdb
+
+# PackageReference migration backup
+MigrationBackup/
+
+# Ionide (F# tools for VS Code)
+.ionide/
+
+# Fody
+FodyWeavers.xsd
+
+#######################################
+##        General Binary Files       ##
+#######################################
+
 # Prerequisites
 *.d
 
-# Compiled Object files
+# Object files
 *.slo
 *.lo
 *.o
 *.obj
 
-# Precompiled Headers
+# Precompiled headers
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
+# Dynamic libraries
 *.so
 *.dylib
 *.dll
 
-# Fortran module files
+# Fortran modules
 *.mod
 *.smod
 
-# Compiled Static libraries
+# Static libraries
 *.lai
 *.la
 *.a
@@ -30,5 +341,3 @@
 *.exe
 *.out
 *.app
-
-.vs/
