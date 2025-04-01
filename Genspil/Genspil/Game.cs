@@ -43,10 +43,10 @@ public class Game
         int id;
         do
         {
-            id = _random.Next(10000000, 99999999); // 8-digit random number
+            id = _random.Next(10000000, 99999999);
         } while (usedIds.Contains(id));
 
-        usedIds.Add(id); // Mark this ID as used
+        usedIds.Add(id);
         return id;
     }
 
