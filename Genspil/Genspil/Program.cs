@@ -1,9 +1,12 @@
 ﻿using System;
+using Genspil;
 
 class Program
 {
     static void Main(string[] args)
     {
+        GameStorage gameStorage = new GameStorage();
+        
         bool running = true;
 
         while (running)
@@ -32,6 +35,7 @@ class Program
                 case 1:
                     // Se liste over spil
                     Console.WriteLine("Her er listen over spil...");
+                    gameStorage.printAllGames();
                     break;
                 case 2:
                     // Søg efter specifikt spil

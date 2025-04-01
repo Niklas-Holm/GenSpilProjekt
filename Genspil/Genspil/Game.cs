@@ -21,11 +21,14 @@ public class Game
     private int amountInStorage;
     private int playerNumber;
     private String genre;
+    
+    private List<int> usedIds = new List<int>();
+    private Random _random = new Random();
 
-    public Game(int id, string name, String condition, double price, bool storageStatus, int amountInStorage,
+    public Game(string name, String condition, double price, bool storageStatus, int amountInStorage,
         int playerNumber,  String genre)
     {
-        this.id = id;
+        id = GenerateUniqueId();
         this.name = name;
         this.condition = condition;
         this.price = price;
@@ -33,6 +36,31 @@ public class Game
         this.amountInStorage = amountInStorage;
         this.playerNumber = playerNumber;
         this.genre = genre;
+    }
+    
+    private int GenerateUniqueId()
+    {
+        int id;
+        do
+        {
+            id = _random.Next(10000000, 99999999); // 8-digit random number
+        } while (usedIds.Contains(id));
+
+        usedIds.Add(id); // Mark this ID as used
+        return id;
+    }
+
+
+    public void printGameDetails()
+    {
+        Console.WriteLine($"Game ID: {this.id}"
+                        + $"\nGame Name: {this.name}"
+                        + $"\nGame Condition: {this.condition}"
+                        + $"\nGame Price: {this.price}"
+                        + $"\nGame Storage Status: {this.storageStatus}"
+                        + $"\nGames in Storage: {this.amountInStorage}"
+                        + $"\nGame Players: {this.playerNumber}"
+                        + $"\nGame Genre: {this.genre}");
     }
     
 }
