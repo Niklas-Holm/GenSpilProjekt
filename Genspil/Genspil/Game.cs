@@ -1,7 +1,9 @@
 
 namespace Genspil;
 
-enum Condition
+
+// Enum til at fastsætte parametre for spils stand.
+internal enum Condition
     {
 A,
 B,
@@ -11,33 +13,37 @@ E,
 F
 
 }
+// Setting properties
 public class Game
 {
-    private int id;
-    private String name;
-    private String condition;
-    private double price;
-    private bool storageStatus;
-    private int amountInStorage;
-    private int playerNumber;
-    private String genre;
-    
+    private int Id {  get; set; }
+    private String Name { get; set; }
+    private Condition Condition { get; set; }
+    private double Price { get; set; }
+    private bool StorageStatus { get; set; }
+    private int AmountInStorage { get; set; }
+    private int PlayerNumber { get; set; }
+    private String Genre { get; set; }
+
     private List<int> usedIds = new List<int>();
     private Random _random = new Random();
 
-    public Game(string name, String condition, double price, bool storageStatus, int amountInStorage,
+
+    // Constructor 
+    public Game(int id, string name, Condition condition, double price, bool storageStatus, int amountInStorage,
         int playerNumber,  String genre)
     {
         id = GenerateUniqueId();
-        this.name = name;
-        this.condition = condition;
-        this.price = price;
-        this.storageStatus = storageStatus;
-        this.amountInStorage = amountInStorage;
-        this.playerNumber = playerNumber;
-        this.genre = genre;
+        this.Name = name;
+        this.Condition = condition;
+        this.Price = price;
+        this.StorageStatus = storageStatus;
+        this.AmountInStorage = amountInStorage;
+        this.PlayerNumber = playerNumber;
+        this.Genre = genre;
     }
     
+    // Metode til at generere ID
     private int GenerateUniqueId()
     {
         int id;
@@ -50,17 +56,18 @@ public class Game
         return id;
     }
 
-
+    // Metode til at printe gamedetails
     public void printGameDetails()
     {
-        Console.WriteLine($"Game ID: {this.id}"
-                        + $"\nGame Name: {this.name}"
-                        + $"\nGame Condition: {this.condition}"
-                        + $"\nGame Price: {this.price}"
-                        + $"\nGame Storage Status: {this.storageStatus}"
-                        + $"\nGames in Storage: {this.amountInStorage}"
-                        + $"\nGame Players: {this.playerNumber}"
-                        + $"\nGame Genre: {this.genre}");
+        Console.WriteLine($"Game ID: {this.Id}"
+                        + $"\nGame Name: {this.Name}"
+                        + $"\nGame Condition: {this.Condition}"
+                        + $"\nGame Price: {this.Price}"
+                        + $"\nGame Storage Status: {this.StorageStatus}"
+                        + $"\nGames in Storage: {this.AmountInStorage}"
+                        + $"\nGame Players: {this.PlayerNumber}"
+                        + $"\nGame Genre: {this.Genre}");
     }
+   
     
 }

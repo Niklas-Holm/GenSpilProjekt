@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Amanda\\Source\\Repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj": {}
+    "C:\\Users\\Amanda\\source\\repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Amanda\\Source\\Repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj": {
+    "C:\\Users\\Amanda\\source\\repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Amanda\\Source\\Repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj",
+        "projectUniqueName": "C:\\Users\\Amanda\\source\\repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj",
         "projectName": "Genspil",
-        "projectPath": "C:\\Users\\Amanda\\Source\\Repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj",
+        "projectPath": "C:\\Users\\Amanda\\source\\repos\\GenSpilProjekt\\Genspil\\Genspil\\Genspil.csproj",
         "packagesPath": "C:\\Users\\Amanda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Amanda\\Source\\Repos\\GenSpilProjekt\\Genspil\\Genspil\\obj\\",
+        "outputPath": "C:\\Users\\Amanda\\source\\repos\\GenSpilProjekt\\Genspil\\Genspil\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
