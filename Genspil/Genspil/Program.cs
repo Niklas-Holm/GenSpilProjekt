@@ -64,6 +64,7 @@ class Program
                 Console.WriteLine("\nTryk Enter for at vende tilbage til menuen.");
                 Console.ReadLine();
             }
+            //hej
         }
     }
 }
