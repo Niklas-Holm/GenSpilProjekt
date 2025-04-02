@@ -1,3 +1,5 @@
+using System.Transactions;
+
 namespace Genspil;
 
 public class GameStorage
@@ -22,15 +24,51 @@ public class GameStorage
 
     private void loadSampleGames()
     {
-        Games.Add(new Game("Catan", "New", 29.99, true, 10, 4, "Strategy"));
-        Games.Add(new Game("Ticket to Ride", "Used", 24.99, true, 5, 5, "Adventure"));
-        Games.Add(new Game("Pandemic", "New", 34.50, true, 8, 4, "Cooperative"));
-        Games.Add(new Game("Carcassonne", "New", 22.00, true, 7, 5, "Tile-placement"));
-        Games.Add(new Game("Gloomhaven", "New", 99.95, true, 2, 4, "Dungeon Crawler"));
-        Games.Add(new Game("Azul", "Used", 18.75, true, 6, 4, "Abstract"));
-        Games.Add(new Game("Wingspan", "New", 39.99, true, 4, 5, "Engine Building"));
-        Games.Add(new Game("7 Wonders", "New", 27.30, true, 9, 7, "Card Drafting"));
-        Games.Add(new Game("Risk", "Used", 15.00, true, 3, 6, "War"));
-        Games.Add(new Game("Betrayal at House on the Hill", "New", 35.20, true, 5, 6, "Horror"));
+        Games.Add(new Game("Catan", Condition.A, 10.99, 4, 6, "Strategy"));
+        Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 6, "Adventure"));
+        Games.Add(new Game("Pandemic", Condition.B, 34.50, 4, 6, "Cooperative"));
+        Games.Add(new Game("Carcassonne", Condition.A, 22.00, 5, 6, "Tile-placement"));
+        Games.Add(new Game("Gloomhaven", Condition.F, 99.95, 4, 6, "Dungeon Crawler"));
+        Games.Add(new Game("Azul", Condition.D, 18.75, 4, 6, "Abstract"));
+        Games.Add(new Game("Wingspan", Condition.B, 39.99, 5, 6, "Engine Building"));
+        Games.Add(new Game("7 Wonders", Condition.D, 27.30, 7, 6, "Card Drafting"));
+        Games.Add(new Game("Risk", Condition.F, 15.00, 6, 6, "War"));
+        Games.Add(new Game("Betrayal at House on the Hill", Condition.A, 35.20, 6, 6, "Horror"));
     }
+
+    //Metode til at tilføje spil:
+
+    public void addGame()
+    {
+        Console.WriteLine("Enter Name:");
+        string gameName = Console.ReadLine();
+
+        Condition condition;
+        while (true)
+        {
+            Console.WriteLine("Enter Condition (A, B, C, D, E, F):");
+            string input = Console.ReadLine();
+             if (Enum.TryParse(input, true, out condition) &&
+                Enum.IsDefined(typeof(Condition), condition))
+            {
+                break;
+            }
+            Console.WriteLine("Invalid input. Please re-enter condition.");
+        }
+
+        Console.WriteLine("Enter Price:");
+        double gamePrice = double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Minimum Amount of Players :");
+        int gameMinPlayer = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Maximum Amount of Players :");
+        int gameMaxPlayer = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Genre:");
+        string gameGenre = Console.ReadLine();
+
+        Games.Add(new Game(gameName, condition, gamePrice, gameMinPlayer, gameMaxPlayer, gameGenre));
+    }
+
 }
