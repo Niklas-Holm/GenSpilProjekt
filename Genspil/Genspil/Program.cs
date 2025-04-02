@@ -17,7 +17,9 @@ class Program
             Console.WriteLine("2. Søg efter specifikt spil.");
             Console.WriteLine("3. Opret forespørgsel.");
             Console.WriteLine("4. Administrer spil på lager.");
-            Console.WriteLine("5. Afslut.");
+            Console.WriteLine("5. Tilføj spil:"); //Midlertidig
+            Console.WriteLine("6. Afslut.");
+            
             Console.Write("\nHvilken funktion vil du benytte? ");
 
             string inputStr = Console.ReadLine();
@@ -50,6 +52,9 @@ class Program
                     Console.WriteLine("Administrerer spil på lager...");
                     break;
                 case 5:
+                    gameStorage.addGame();
+                    break;
+                case 6:
                     // Afslut
                     Console.WriteLine("Farvel!");
                     running = false;
