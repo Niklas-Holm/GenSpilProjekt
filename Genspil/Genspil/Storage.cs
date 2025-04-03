@@ -2,30 +2,30 @@ using System.Transactions;
 
 namespace Genspil;
 
-public class GameStorage
+public class Storage
 {
     private List<Game> Games;
 
-    public GameStorage()
+    public Storage()
     {
         Games = new List<Game>();
 
-        loadSampleGames();
+        LoadSampleGames();
 
 
 
     }
 
-    public void printAllGames()
+    public void PrintAllGames()
     {
         foreach (var game in Games)
         {
-            game.printGameDetails();
+            game.PrintGameDetails();
             Console.WriteLine("-----------------------");
         }
     }
 
-    public void loadSampleGames()
+    public void LoadSampleGames()
     {
         Games.Add(new Game("Catan", Condition.A, 10.99, 4, 6, "Strategy"));
         Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 6, "Adventure"));
@@ -41,7 +41,7 @@ public class GameStorage
 
     //Metode til at tilføje spil:
 
-    public void addGame()
+    public void AddGame()
     {
         Console.WriteLine("Enter Name:");
         string gameName = Console.ReadLine();
@@ -83,6 +83,8 @@ public class GameStorage
     //    Games.Remove("Catan");
     //}
 
+
+    //Metode til at fjerne spil via Id
     public void RemoveGame()
     {
         Console.WriteLine("Input Game to Remove");
@@ -97,5 +99,44 @@ public class GameStorage
             }
         }
 
+    }
+
+    // Metode til at administrere spil:
+    public void AdministrerSpil()
+    {
+        bool running = true;
+
+        while (running)
+        {
+            Console.Clear();
+            Console.WriteLine("1. Tilføj Spil.");
+            Console.WriteLine("2. Fjern Spil.");
+            Console.WriteLine("3. Tilbage");
+            string inputStr = Console.ReadLine();
+            int input;
+
+            if (!int.TryParse(inputStr, out input))
+            {
+                Console.WriteLine("Ugyldigt input. Tryk Enter for at prøve igen.");
+                Console.ReadLine();
+                continue;
+            }
+            switch (input)
+            {
+                case 1:
+                    AddGame();
+                    break;
+                    running = false;
+                case 2:
+                   RemoveGame();
+                    break;
+                    running = false;
+                case 3:
+                    running = false;
+                    break;
+
+            }
+            
+        }
     }
 }

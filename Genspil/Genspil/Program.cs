@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Genspil;
 
 class Program
 {
+
     static void Main(string[] args)
     {
-        GameStorage gameStorage = new GameStorage();
-        
+        Storage gameStorage = new Storage();
         bool running = true;
 
         while (running)
@@ -14,12 +15,12 @@ class Program
             Console.Clear();
             Console.WriteLine("Velkommen til Genspil appen!");
             Console.WriteLine("1. Se liste over spil.");
-            Console.WriteLine("2. Fjern spil."); //Midlertidig
+            Console.WriteLine("2. Administrer Spil.");
             Console.WriteLine("3. Opret forespørgsel.");
             Console.WriteLine("4. Administrer spil på lager.");
             Console.WriteLine("5. Tilføj spil:"); //Midlertidig
             Console.WriteLine("6. Afslut.");
-            
+
             Console.Write("\nHvilken funktion vil du benytte? ");
 
             string inputStr = Console.ReadLine();
@@ -37,11 +38,11 @@ class Program
                 case 1:
                     // Se liste over spil
                     Console.WriteLine("Her er listen over spil...");
-                    gameStorage.printAllGames();
+                    gameStorage.PrintAllGames();
                     break;
                 case 2:
                     // Søg efter specifikt spil
-                    gameStorage.RemoveGame();
+                    gameStorage.AdministrerSpil();
                     break;
                 case 3:
                     // Opret forespørgsel
@@ -52,7 +53,7 @@ class Program
                     Console.WriteLine("Administrerer spil på lager...");
                     break;
                 case 5:
-                    gameStorage.addGame();
+                    gameStorage.AddGame();
                     break;
                 case 6:
                     // Afslut
@@ -69,7 +70,14 @@ class Program
                 Console.WriteLine("\nTryk Enter for at vende tilbage til menuen.");
                 Console.ReadLine();
             }
-            //hej
+
+
+
         }
+
+
+
     }
 }
+    
+

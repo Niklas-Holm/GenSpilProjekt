@@ -74,7 +74,7 @@ public class Game
     }
 
     // Metode til at printe gamedetails
-    public void printGameDetails()
+    public void PrintGameDetails()
     {
         Console.WriteLine($"Game ID: {this.Id}"
                         + $"\nGame Name: {this.Name}"
