@@ -14,7 +14,7 @@ class Program
             Console.Clear();
             Console.WriteLine("Velkommen til Genspil appen!");
             Console.WriteLine("1. Se liste over spil.");
-            Console.WriteLine("2. Søg efter specifikt spil.");
+            Console.WriteLine("2. Fjern spil."); //Midlertidig
             Console.WriteLine("3. Opret forespørgsel.");
             Console.WriteLine("4. Administrer spil på lager.");
             Console.WriteLine("5. Tilføj spil:"); //Midlertidig
@@ -41,7 +41,7 @@ class Program
                     break;
                 case 2:
                     // Søg efter specifikt spil
-                    Console.WriteLine("Søger efter spil...");
+                    gameStorage.RemoveGame();
                     break;
                 case 3:
                     // Opret forespørgsel

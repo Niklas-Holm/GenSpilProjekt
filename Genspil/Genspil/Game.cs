@@ -19,10 +19,10 @@ F
 // Setting properties
 public class Game
 {
-    private int Id { get; set; }
-    private String Name { get; set; }
-    private Condition _condition; // Backing field
-    private Condition Condition 
+    public int Id { get; set; }
+    public String Name { get; set; }
+    public Condition _condition; // Backing field
+    public Condition Condition 
     {
         get { return _condition; } // Return the backing field
         set
@@ -34,16 +34,16 @@ public class Game
             _condition = value; // Assign to the backing field
         }
     }
-    private double Price { get; set; }
+    public double Price { get; set; }
 
     // private int AmountInStorage { get; set; }
-    private int MinPlayer { get; set; }
-    private int MaxPlayer { get; set; }
+    public int MinPlayer { get; set; }
+    public int MaxPlayer { get; set; }
 
-    private String Genre { get; set; }
+    public String Genre { get; set; }
 
-    private List<int> usedIds = new List<int>();
-    private Random _random = new Random();
+    public List<int> usedIds = new List<int>();
+    public Random _random = new Random();
 
 
     // Constructor 

@@ -11,6 +11,9 @@ public class GameStorage
         Games = new List<Game>();
 
         loadSampleGames();
+
+
+
     }
 
     public void printAllGames()
@@ -22,7 +25,7 @@ public class GameStorage
         }
     }
 
-    private void loadSampleGames()
+    public void loadSampleGames()
     {
         Games.Add(new Game("Catan", Condition.A, 10.99, 4, 6, "Strategy"));
         Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 6, "Adventure"));
@@ -71,4 +74,28 @@ public class GameStorage
         Games.Add(new Game(gameName, condition, gamePrice, gameMinPlayer, gameMaxPlayer, gameGenre));
     }
 
+
+    //Metode til at fjerne spil:
+    //public void removeGame()
+    //{
+    //    Console.WriteLine("Enter game name to remove:");
+    //    Console.ReadLine(Games.Remove());
+    //    Games.Remove("Catan");
+    //}
+
+    public void RemoveGame()
+    {
+        Console.WriteLine("Input Game to Remove");
+        int removeGame = int.Parse(Console.ReadLine());
+        foreach (Game game in Games)
+        {
+            if (game.Id == removeGame)
+            {
+                Games.Remove(game);
+                Console.WriteLine($"{removeGame} Removed");
+                return;
+            }
+        }
+
+    }
 }
