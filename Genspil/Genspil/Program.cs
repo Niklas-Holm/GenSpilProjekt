@@ -36,9 +36,17 @@ class Program
             {
                 case 1:
                     // Se liste over spil
+                    Console.Clear();
+                    Console.WriteLine("Here's the list:\n-----------------------");
+
+                    gameStorage.PrintAllGames(gameStorage.Games);
+
+                    Console.WriteLine("\nWhat do you wish to do?\n");
+
                     Console.WriteLine("1. Generate Text File List.\n" +
                                       "2. Filter List.\n" +
                                       "0. Exit. ");
+
                     int listSubMenuInput = Int32.Parse(Console.ReadLine());
 
                     switch (listSubMenuInput)
@@ -104,7 +112,7 @@ class Program
                                                       "1. Ascending\n" +
                                                       "2. Descending");
                                     int priceOrder = Int32.Parse(Console.ReadLine());
-                                    gameStorage.FilterGameByCondition(priceOrder);
+                                    gameStorage.FilterGameByPrice(priceOrder);
                                     Console.WriteLine("Generate text file for the sorted list? (y/n): ");
                                     string generatePriceTxtInput = Console.ReadLine().ToLower();
                                     switch (generatePriceTxtInput)
@@ -120,7 +128,69 @@ class Program
 
 
                                     break;
+                                case 4:
+                                    Console.WriteLine("In What Order?\n" +
+                                                      "1. Ascending\n" +
+                                                      "2. Descending");
+                                    int minPlayerOrder = Int32.Parse(Console.ReadLine());
+                                    gameStorage.FilterGameByMinPlayer(minPlayerOrder);
+                                    Console.WriteLine("Generate text file for the sorted list? (y/n): ");
+                                    string generateMinPlayerTxtInput = Console.ReadLine().ToLower();
+                                    switch (generateMinPlayerTxtInput)
+                                    {
+                                        case "y":
+                                            Console.WriteLine("Generating File");
+                                            break;
+                                        case "n":
 
+                                            break;
+                                            //Kommer her
+                                    }
+
+
+                                    break;
+                                case 5:
+                                    Console.WriteLine("In What Order?\n" +
+                                                      "1. Ascending\n" +
+                                                      "2. Descending");
+                                    int maxPlayerOrder = Int32.Parse(Console.ReadLine());
+                                    gameStorage.FilterGameByMinPlayer(maxPlayerOrder);
+                                    Console.WriteLine("Generate text file for the sorted list? (y/n): ");
+                                    string generateMaxPlayerTxtInput = Console.ReadLine().ToLower();
+                                    switch (generateMaxPlayerTxtInput)
+                                    {
+                                        case "y":
+                                            Console.WriteLine("Generating File");
+                                            break;
+                                        case "n":
+
+                                            break;
+                                            //Kommer her
+                                    }
+
+
+                                    break;
+                                case 6:
+                                    Console.WriteLine("In What Order?\n" +
+                                                      "1. Ascending\n" +
+                                                      "2. Descending");
+                                    int genreOrder = Int32.Parse(Console.ReadLine());
+                                    gameStorage.FilterGameByGenre(genreOrder);
+                                    Console.WriteLine("Generate text file for the sorted list? (y/n): ");
+                                    string generateGenreTxtInput = Console.ReadLine().ToLower();
+                                    switch (generateGenreTxtInput)
+                                    {
+                                        case "y":
+                                            Console.WriteLine("Generating File");
+                                            break;
+                                        case "n":
+
+                                            break;
+                                            //Kommer her
+                                    }
+
+
+                                    break;
 
 
                             }
@@ -130,8 +200,45 @@ class Program
                     gameStorage.PrintAllGames(gameStorage.Games);
                     break;
                 case 2:
-                    // Søg efter specifikt spil
-                    gameStorage.AdministrerSpil();
+                    bool adminRunning = true;
+
+                    while (adminRunning)
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine("1. Tilføj Spil.");
+                        Console.WriteLine("2. Remove Game.");
+                        Console.WriteLine("0. Exit to Main Menu");
+                        Console.WriteLine("\nWhat do you wish to do?");
+                        string adminInputStr = Console.ReadLine();
+                        int adminInput;
+
+                        if (!int.TryParse(adminInputStr, out adminInput))
+                        {
+                            Console.WriteLine("Ugyldigt input. Tryk Enter for at prøve igen.");
+                            Console.ReadLine();
+                            continue;
+                        }
+                        switch (adminInput)
+                        {
+                            case 1:
+                                Console.WriteLine("Input Game Details:\n");
+                                gameStorage.AddGame();
+                                adminRunning = false;
+                                break;
+
+                            case 2:
+                                gameStorage.RemoveGame();
+                                adminRunning = false;
+                                break;
+
+                            case 0:
+                                adminRunning = false;
+                                break;
+
+                        }
+
+                    }
                     break;
                 case 3:
                     // Opret forespørgsel
@@ -153,7 +260,7 @@ class Program
 
             if (running)
             {
-                Console.WriteLine("\nTryk Enter for at vende tilbage til menuen.");
+                Console.WriteLine("\nPress 'Enter' to return to main menu.");
                 Console.ReadLine();
             }
 

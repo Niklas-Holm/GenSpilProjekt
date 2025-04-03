@@ -28,15 +28,15 @@ public class Storage
     public void LoadSampleGames()
     {
         Games.Add(new Game("Catan", Condition.A, 10.99, 4, 6, "Strategy"));
-        Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 6, "Adventure"));
-        Games.Add(new Game("Pandemic", Condition.B, 34.50, 4, 6, "Cooperative"));
-        Games.Add(new Game("Carcassonne", Condition.A, 22.00, 5, 6, "Tile-placement"));
-        Games.Add(new Game("Gloomhaven", Condition.F, 99.95, 4, 6, "Dungeon Crawler"));
+        Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 10, "Adventure"));
+        Games.Add(new Game("Pandemic", Condition.B, 34.50, 4, 4, "Cooperative"));
+        Games.Add(new Game("Carcassonne", Condition.A, 22.00, 5, 90, "Tile-placement"));
+        Games.Add(new Game("Gloomhaven", Condition.F, 99.95, 4, 16, "Dungeon Crawler"));
         Games.Add(new Game("Azul", Condition.D, 18.75, 4, 6, "Abstract"));
         Games.Add(new Game("Wingspan", Condition.B, 39.99, 5, 6, "Engine Building"));
-        Games.Add(new Game("7 Wonders", Condition.D, 27.30, 7, 6, "Card Drafting"));
+        Games.Add(new Game("7 Wonders", Condition.D, 27.30, 7, 29, "Card Drafting"));
         Games.Add(new Game("Risk", Condition.F, 15.00, 6, 6, "War"));
-        Games.Add(new Game("Betrayal at House on the Hill", Condition.A, 35.20, 6, 6, "Horror"));
+        Games.Add(new Game("Betrayal at House on the Hill", Condition.A, 35.20, 6, 9, "Horror"));
         Games.Add(new Game("Catan", Condition.B, 10.99, 4, 6, "Strategy"));
     }
 
@@ -77,18 +77,8 @@ public class Storage
         Console.WriteLine("\nGame Successfully Added \\o/");
     }
 
-
-    //Metode til at fjerne spil:
-    //public void removeGame()
-    //{
-    //    Console.WriteLine("Enter game name to remove:");
-    //    Console.ReadLine(Games.Remove());
-    //    Games.Remove("Catan");
-    //}
-
-
-    //Metode til at fjerne spil via Id
-    public void RemoveGame()
+    //Metode til at fjerne spil via Id - Move readlines to Main
+    public void RemoveGame() 
     {
         Console.WriteLine("Input Game Id to Remove (or press 'Q' to exit)");
         string removeGame = Console.ReadLine();
@@ -133,51 +123,7 @@ public class Storage
 
     }
 
-    // Metode til at administrere spil:
-    public void AdministrerSpil()
-    {
-        bool running = true;
-
-        while (running)
-        {
-            Console.Clear();
-            
-            Console.WriteLine("1. Tilføj Spil.");
-            Console.WriteLine("2. Remove Game.");
-            Console.WriteLine("0. Exit to Main Menu");
-            Console.WriteLine("\nWhat do you wish to do?");
-            string inputStr = Console.ReadLine();
-            int input;
-
-            if (!int.TryParse(inputStr, out input))
-            {
-                Console.WriteLine("Ugyldigt input. Tryk Enter for at prøve igen.");
-                Console.ReadLine();
-                continue;
-            }
-            switch (input)
-            {
-                case 1:
-                    Console.WriteLine("Input Game Details:\n");
-                    AddGame();
-                    running = false;
-                    break;
-                    
-                case 2:
-                    RemoveGame();
-                    running = false;
-                    break;
-                    
-                case 0:
-                    running = false;
-                    break;
-
-            }
-
-        }
-    }
-
-    // Metode til at finde specifikt spil.
+    // Metode til at finde specifikt spil. - Move readlines to Main
          public void SearchGameByName()
     {
         Console.WriteLine("Input Game Name");
@@ -289,6 +235,79 @@ public class Storage
 
 
     }
+    public void FilterGameByMinPlayer(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByMinPlayer = Games.OrderBy(g => g.MinPlayer).ToList();
+            PrintAllGames(sortedByMinPlayer);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByMinPlayerReverse = Games.OrderByDescending(g => g.MinPlayer).ToList();
+            PrintAllGames(sortedByMinPlayerReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+
+
+    }
+    public void FilterGameByMaxPlayer(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByMaxPlayer = Games.OrderBy(g => g.MaxPlayer).ToList();
+            PrintAllGames(sortedByMaxPlayer);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByMaxPlayerReverse = Games.OrderByDescending(g => g.MaxPlayer).ToList();
+            PrintAllGames(sortedByMaxPlayerReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+
+
+    }
+    public void FilterGameByGenre(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByGenre = Games.OrderBy(g => g.Genre).ToList();
+            PrintAllGames(sortedByGenre);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByGenreReverse = Games.OrderByDescending(g => g.Genre).ToList();
+            PrintAllGames(sortedByGenreReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+
+
+    }
+
 }
 
 
