@@ -79,7 +79,7 @@ public class Game
         Console.WriteLine($"Game ID: {this.Id}"
                         + $"\nGame Name: {this.Name}"
                         + $"\nGame Condition: {this.Condition}"
-                        + $"\nGame Price: {this.Price}"
+                        + $"\nGame Price: {this.Price} kr."
                         //+ $"\nGames in Storage: {this.AmountInStorage}"
                         + $"\nGame Players: {this.MinPlayer}-{this.MaxPlayer}"
                         + $"\nGame Genre: {this.Genre}");

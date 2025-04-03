@@ -4,7 +4,7 @@ namespace Genspil;
 
 public class Storage
 {
-    private List<Game> Games;
+    public List<Game> Games;
 
     public Storage()
     {
@@ -16,9 +16,9 @@ public class Storage
 
     }
 
-    public void PrintAllGames()
+    public void PrintAllGames(List<Game> gameList)
     {
-        foreach (var game in Games)
+        foreach (var game in gameList)
         {
             game.PrintGameDetails();
             Console.WriteLine("-----------------------");
@@ -37,19 +37,20 @@ public class Storage
         Games.Add(new Game("7 Wonders", Condition.D, 27.30, 7, 6, "Card Drafting"));
         Games.Add(new Game("Risk", Condition.F, 15.00, 6, 6, "War"));
         Games.Add(new Game("Betrayal at House on the Hill", Condition.A, 35.20, 6, 6, "Horror"));
+        Games.Add(new Game("Catan", Condition.B, 10.99, 4, 6, "Strategy"));
     }
 
     //Metode til at tilføje spil:
 
     public void AddGame()
     {
-        Console.WriteLine("Enter Name:");
+        Console.Write("Enter Name: ");
         string gameName = Console.ReadLine();
 
         Condition condition;
         while (true)
         {
-            Console.WriteLine("Enter Condition (A, B, C, D, E, F):");
+            Console.Write("\nEnter Condition (A, B, C, D, E, F): ");
             string input = Console.ReadLine();
              if (Enum.TryParse(input, true, out condition) &&
                 Enum.IsDefined(typeof(Condition), condition))
@@ -59,19 +60,21 @@ public class Storage
             Console.WriteLine("Invalid input. Please re-enter condition.");
         }
 
-        Console.WriteLine("Enter Price:");
+        Console.Write("\nEnter Price: ");
         double gamePrice = double.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter Minimum Amount of Players :");
+        Console.Write("\nEnter Minimum Amount of Players: ");
         int gameMinPlayer = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter Maximum Amount of Players :");
+        Console.Write("\nEnter Maximum Amount of Players: ");
         int gameMaxPlayer = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter Genre:");
+        Console.Write("\nEnter Genre: ");
         string gameGenre = Console.ReadLine();
 
         Games.Add(new Game(gameName, condition, gamePrice, gameMinPlayer, gameMaxPlayer, gameGenre));
+
+        Console.WriteLine("\nGame Successfully Added \\o/");
     }
 
 
@@ -87,17 +90,46 @@ public class Storage
     //Metode til at fjerne spil via Id
     public void RemoveGame()
     {
-        Console.WriteLine("Input Game to Remove");
-        int removeGame = int.Parse(Console.ReadLine());
-        foreach (Game game in Games)
+        Console.WriteLine("Input Game Id to Remove (or press 'Q' to exit)");
+        string removeGame = Console.ReadLine();
+        int removeGameInt;
+
+        if (removeGame.ToLower() == "q")
         {
-            if (game.Id == removeGame)
+            
+            Console.WriteLine("You exited.");
+            return;
+        } else if (Int32.TryParse(removeGame, out removeGameInt))
+        {
+            foreach (Game game in Games)
             {
-                Games.Remove(game);
-                Console.WriteLine($"{removeGame} Removed");
-                return;
+                if (game.Id == removeGameInt)
+                {
+                    SearchGameById(removeGameInt);
+                    Console.WriteLine("Do you want to delete this game? (y/n)");
+                    string input = Console.ReadLine().ToLower();
+                    switch (input)
+                    {
+                        case "y":
+                            Console.WriteLine("Removal Complete. Press 'Enter' to return. ");
+                            Games.Remove(game);
+                            Console.ReadLine();
+
+                            break;
+                        case "n":
+                            Console.WriteLine("Removal Cancelled. Press 'Enter' to return.");
+                            Console.ReadLine();
+                            break;
+                    }
+                    return;
+                }
+
             }
+        }else
+        {
+            return;
         }
+
 
     }
 
@@ -109,9 +141,11 @@ public class Storage
         while (running)
         {
             Console.Clear();
+            
             Console.WriteLine("1. Tilføj Spil.");
-            Console.WriteLine("2. Fjern Spil.");
-            Console.WriteLine("3. Tilbage");
+            Console.WriteLine("2. Remove Game.");
+            Console.WriteLine("0. Exit to Main Menu");
+            Console.WriteLine("\nWhat do you wish to do?");
             string inputStr = Console.ReadLine();
             int input;
 
@@ -124,19 +158,138 @@ public class Storage
             switch (input)
             {
                 case 1:
+                    Console.WriteLine("Input Game Details:\n");
                     AddGame();
-                    break;
                     running = false;
+                    break;
+                    
                 case 2:
-                   RemoveGame();
-                    break;
+                    RemoveGame();
                     running = false;
-                case 3:
+                    break;
+                    
+                case 0:
                     running = false;
                     break;
 
             }
-            
+
         }
     }
+
+    // Metode til at finde specifikt spil.
+         public void SearchGameByName()
+    {
+        Console.WriteLine("Input Game Name");
+        string findMatchingGame = Console.ReadLine();
+        Console.WriteLine($"\nAll games of the name {findMatchingGame}");
+        Console.WriteLine("---------------------------");
+        foreach (Game game in Games)
+       
+        {
+
+            if (game.Name.ToLower() == findMatchingGame.ToLower())
+            {
+                
+                game.PrintGameDetails();
+
+                Console.WriteLine("---------------------------");
+                
+            }
+        }
+        
+    }
+    public void SearchGameById(int Id)
+    {
+        
+        foreach (Game game in Games)
+
+        {
+
+            if (game.Id == Id)
+            {
+
+                game.PrintGameDetails();
+
+                Console.WriteLine("---------------------------");
+
+            }
+        }
+
+    }
+    public void FilterGameByName(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByName = Games.OrderBy(g => g.Name).ToList();
+            PrintAllGames(sortedByName);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByNameReverse = Games.OrderByDescending(g => g.Name).ToList();
+            PrintAllGames(sortedByNameReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+       
+        
+        
+    }
+    public void FilterGameByCondition(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByCondition = Games.OrderBy(g => g.Condition).ToList();
+            PrintAllGames(sortedByCondition);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByConditionReverse = Games.OrderByDescending(g => g.Condition).ToList();
+            PrintAllGames(sortedByConditionReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+
+
+    }
+    public void FilterGameByPrice(int order)
+    {
+
+        if (order == 1)
+        {
+            var sortedByPrice = Games.OrderBy(g => g.Price).ToList();
+            PrintAllGames(sortedByPrice);
+            return;
+        }
+        else if (order == 2)
+        {
+            var sortedByPriceReverse = Games.OrderByDescending(g => g.Price).ToList();
+            PrintAllGames(sortedByPriceReverse);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+
+
+    }
 }
+
+
+
