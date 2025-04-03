@@ -4,6 +4,8 @@ namespace Genspil;
 
 public class Storage
 {
+
+    // Games
     public List<Game> Games;
 
     public Storage()
@@ -307,6 +309,13 @@ public class Storage
 
 
     }
+
+
+    // Inquiries 
+    public List<Inquiry> Inquiries;
+
+
+
 
 }
 

@@ -50,7 +50,7 @@ public class Game
     public Game(string name, Condition condition, double price,
         int minPlayer, int maxPlayer, String genre)
     {
-        Id = GenerateUniqueId();
+        this.Id = GenerateUniqueId();
         this.Name = name;
         this.Condition = condition;
         this.Price = price;
