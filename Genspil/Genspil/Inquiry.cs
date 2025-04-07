@@ -8,14 +8,14 @@ namespace Genspil
 {
     public class Inquiry
     {
-        private int Id;
-        private String GameName;
-        private Customer Customer;
+        public int Id { get; set; }
+        public String GameName { get; set; }
+        public Customer Customer { get; set; }
         public List<int> usedIds = new List<int>();
         public Random _random = new Random();
 
 
-        public Inquiry(int id, string gameName, Customer customer)
+        public Inquiry(string gameName, Customer customer)
         {
             this.Id = GenerateUniqueId();
             this.GameName = gameName;
@@ -37,11 +37,13 @@ namespace Genspil
         }
 
         // Metode til at printe Inquiry
-        public void PrintInquiryInfo()
+        public void PrintInquiryDetails()
         {
             Console.WriteLine($"Id: {this.Id}"
                             + $"\nGame Name: {this.GameName}"
-                            + $"\nCustomer info:\n {this.Customer}");
+                            + $"\n\nCustomer Details");
+            Console.WriteLine(new string('-', 12));
+            this.Customer.PrintCustomerDetails();
         }
     }
 }

@@ -8,12 +8,17 @@ public class Storage
     // Games
     public List<Game> Games;
 
+    // Inquiries
+    
+    public List<Inquiry> Inquiries;
+
     public Storage()
     {
         Games = new List<Game>();
+        Inquiries = new List<Inquiry>();
 
         LoadSampleGames();
-
+        LoadSampleInquiries();
 
 
     }
@@ -29,107 +34,73 @@ public class Storage
 
     public void LoadSampleGames()
     {
-        Games.Add(new Game("Catan", Condition.A, 10.99, 4, 6, "Strategy"));
-        Games.Add(new Game("Ticket to Ride", Condition.C, 24.99, 5, 10, "Adventure"));
-        Games.Add(new Game("Pandemic", Condition.B, 34.50, 4, 4, "Cooperative"));
-        Games.Add(new Game("Carcassonne", Condition.A, 22.00, 5, 90, "Tile-placement"));
-        Games.Add(new Game("Gloomhaven", Condition.F, 99.95, 4, 16, "Dungeon Crawler"));
-        Games.Add(new Game("Azul", Condition.D, 18.75, 4, 6, "Abstract"));
-        Games.Add(new Game("Wingspan", Condition.B, 39.99, 5, 6, "Engine Building"));
-        Games.Add(new Game("7 Wonders", Condition.D, 27.30, 7, 29, "Card Drafting"));
-        Games.Add(new Game("Risk", Condition.F, 15.00, 6, 6, "War"));
-        Games.Add(new Game("Betrayal at House on the Hill", Condition.A, 35.20, 6, 9, "Horror"));
-        Games.Add(new Game("Catan", Condition.B, 10.99, 4, 6, "Strategy"));
+        AddGame("Catan", Condition.A, 10.99, 4, 6, "Strategy");
+        AddGame("Ticket to Ride", Condition.C, 24.99, 5, 10, "Adventure");
+        AddGame("Pandemic", Condition.B, 34.50, 4, 4, "Cooperative");
+        AddGame("Carcassonne", Condition.A, 22.00, 5, 90, "Tile-placement");
+        AddGame("Gloomhaven", Condition.F, 99.95, 4, 16, "Dungeon Crawler");
+        AddGame("Azul", Condition.D, 18.75, 4, 6, "Abstract");
+        AddGame("Wingspan", Condition.B, 39.99, 5, 6, "Engine Building");
+        AddGame("7 Wonders", Condition.D, 27.30, 7, 29, "Card Drafting");
+        AddGame("Risk", Condition.F, 15.00, 6, 6, "War");
+        AddGame("Betrayal at House on the Hill", Condition.A, 35.20, 6, 9, "Horror");
+        AddGame("Catan", Condition.B, 10.99, 4, 6, "Strategy"); 
     }
+    public void LoadSampleInquiries()
+    {
+        AddInquiry("Catan","Alice", "alice@example.com", 12345678, "Fra Fitness");
+        AddInquiry("Pandemic","Bob", "bob@example.com", 23456789, "");
+        AddInquiry("Carcassonne","Charlie", "charlie@example.com", 34567890, "");
+        AddInquiry("Terraforming Mars","Diana", "diana@example.com", 45678901, "");
+        AddInquiry("Ticket to Ride","Eve", "eve@example.com", 56789012, ""  );
+        AddInquiry("7 Wonders","Frank", "frank@example.com", 67890123, "");
+        AddInquiry("Azul","Grace", "grace@example.com", 78901234, "");
+        AddInquiry("Splendor","Henry", "henry@example.com", 89012345, "");
+        AddInquiry("Wingspan","Isabel", "isabel@example.com", 90123456, "Fra Bibloteket");
+        AddInquiry("Root","Jack", "jack@example.com", 11223344, "Mortens Ven");
+    }
+
 
     //Metode til at tilføje spil:
 
-    public void AddGame()
+    public void AddGame(string gameName, Condition condition, double gamePrice, int gameMinPlayer, int gameMaxPlayer, string gameGenre)
     {
-        Console.Write("Enter Name: ");
-        string gameName = Console.ReadLine();
-
-        Condition condition;
-        while (true)
-        {
-            Console.Write("\nEnter Condition (A, B, C, D, E, F): ");
-            string input = Console.ReadLine();
-             if (Enum.TryParse(input, true, out condition) &&
-                Enum.IsDefined(typeof(Condition), condition))
-            {
-                break;
-            }
-            Console.WriteLine("Invalid input. Please re-enter condition.");
-        }
-
-        Console.Write("\nEnter Price: ");
-        double gamePrice = double.Parse(Console.ReadLine());
-
-        Console.Write("\nEnter Minimum Amount of Players: ");
-        int gameMinPlayer = int.Parse(Console.ReadLine());
-
-        Console.Write("\nEnter Maximum Amount of Players: ");
-        int gameMaxPlayer = int.Parse(Console.ReadLine());
-
-        Console.Write("\nEnter Genre: ");
-        string gameGenre = Console.ReadLine();
+        
 
         Games.Add(new Game(gameName, condition, gamePrice, gameMinPlayer, gameMaxPlayer, gameGenre));
 
-        Console.WriteLine("\nGame Successfully Added \\o/");
+        
     }
-
-    //Metode til at fjerne spil via Id - Move readlines to Main
-    public void RemoveGame() 
+    // Metode til at tilføje inquiry:
+    public void AddInquiry(string gameName, string customerName, string customerEmail, int customerPhone, string customerAdditionalInfo)
     {
-        Console.WriteLine("Input Game Id to Remove (or press 'Q' to exit)");
-        string removeGame = Console.ReadLine();
-        int removeGameInt;
 
-        if (removeGame.ToLower() == "q")
-        {
-            
-            Console.WriteLine("You exited.");
-            return;
-        } else if (Int32.TryParse(removeGame, out removeGameInt))
-        {
-            foreach (Game game in Games)
-            {
-                if (game.Id == removeGameInt)
-                {
-                    SearchGameById(removeGameInt);
-                    Console.WriteLine("Do you want to delete this game? (y/n)");
-                    string input = Console.ReadLine().ToLower();
-                    switch (input)
-                    {
-                        case "y":
-                            Console.WriteLine("Removal Complete. Press 'Enter' to return. ");
-                            Games.Remove(game);
-                            Console.ReadLine();
 
-                            break;
-                        case "n":
-                            Console.WriteLine("Removal Cancelled. Press 'Enter' to return.");
-                            Console.ReadLine();
-                            break;
-                    }
-                    return;
-                }
-
-            }
-        }else
-        {
-            return;
-        }
+        Inquiries.Add(new Inquiry(gameName, new Customer(customerName, customerEmail, customerPhone, customerAdditionalInfo)));
 
 
     }
 
-    // Metode til at finde specifikt spil. - Move readlines to Main
-         public void SearchGameByName()
+    //Metode til at fjerne spil via Id 
+    public void RemoveGame(Game game) 
     {
-        Console.WriteLine("Input Game Name");
-        string findMatchingGame = Console.ReadLine();
+        Games.Remove(game);
+
+
+    }
+
+    //Metode til at fjerne inquiry via Id
+    public void RemoveInquiry(Inquiry inquiry)
+    {
+        Inquiries.Remove(inquiry);
+
+
+    }
+
+    // Metode til at finde specifikt spil.
+    public void SearchGameByName(string findMatchingGame)
+    {
+        
         Console.WriteLine($"\nAll games of the name {findMatchingGame}");
         Console.WriteLine("---------------------------");
         foreach (Game game in Games)
@@ -158,6 +129,25 @@ public class Storage
             {
 
                 game.PrintGameDetails();
+
+                Console.WriteLine("---------------------------");
+
+            }
+        }
+
+    }
+
+    public void SearchInquiryById(int Id)
+    {
+
+        foreach (Inquiry inquiry in Inquiries)
+
+        {
+
+            if (inquiry.Id == Id)
+            {
+
+                inquiry.PrintInquiryDetails();
 
                 Console.WriteLine("---------------------------");
 
@@ -311,9 +301,17 @@ public class Storage
     }
 
 
-    // Inquiries 
-    public List<Inquiry> Inquiries;
+   
 
+    // Metode til at printe inquiries
+    public void PrintAllInquiries()
+    {
+        foreach (var inquiry in Inquiries)
+        {
+            inquiry.PrintInquiryDetails();
+            Console.WriteLine("-----------------------");
+        }
+    }
 
 
 

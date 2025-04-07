@@ -11,21 +11,24 @@ namespace Genspil
         public string Name { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
+        public string AdditionalInfo { get; set; }
 
         // Constructor 
-        public Customer(string name, string email, int phone)
+        public Customer(string name, string email, int phone, string additionalInfo)
         {
             this.Name = name;
             this.Email = email;
             this.Phone = phone;
+            this.AdditionalInfo = additionalInfo;
         }
 
         // Metode til at printe customer info
-        public void PrintCustomerInfo()
+        public void PrintCustomerDetails()
         {
             Console.WriteLine($"Name: {this.Name}"
                             + $"\nEmail: {this.Email}"
-                            + $"\nPhone Number: {this.Phone}");
+                            + $"\nPhone Number: {this.Phone}"
+                            + $"\nAdditional Info: {this.AdditionalInfo}");
         }
     }
 }
