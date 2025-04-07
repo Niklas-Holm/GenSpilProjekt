@@ -11,16 +11,21 @@ public class Storage
     // Inquiries
     
     public List<Inquiry> Inquiries;
+    
+    private readonly DataHandler dataHandler;
 
     public Storage()
     {
-        Games = new List<Game>();
-        Inquiries = new List<Inquiry>();
+        dataHandler = new DataHandler("games.txt", "inquiries.txt");
 
-        LoadSampleGames();
-        LoadSampleInquiries();
+        Games = dataHandler.LoadGamesFromFile();
+        Inquiries = dataHandler.LoadInquiriesFromFile();
 
+        if (Games.Count == 0)
+            LoadSampleGames();
 
+        if (Inquiries.Count == 0)
+            LoadSampleInquiries();
     }
 
     public void PrintAllGames(List<Game> gameList)
@@ -61,22 +66,24 @@ public class Storage
     }
 
 
-    //Metode til at tilføje spil:
+    //Metode til at tilfï¿½je spil:
 
     public void AddGame(string gameName, Condition condition, double gamePrice, int gameMinPlayer, int gameMaxPlayer, string gameGenre)
     {
         
 
         Games.Add(new Game(gameName, condition, gamePrice, gameMinPlayer, gameMaxPlayer, gameGenre));
+        dataHandler.SaveGamesToFile(Games);
 
         
     }
-    // Metode til at tilføje inquiry:
+    // Metode til at tilfï¿½je inquiry:
     public void AddInquiry(string gameName, string customerName, string customerEmail, int customerPhone, string customerAdditionalInfo)
     {
 
 
         Inquiries.Add(new Inquiry(gameName, new Customer(customerName, customerEmail, customerPhone, customerAdditionalInfo)));
+        dataHandler.SaveInquiriesToFile(Inquiries);
 
 
     }
@@ -85,6 +92,7 @@ public class Storage
     public void RemoveGame(Game game) 
     {
         Games.Remove(game);
+        dataHandler.SaveGamesToFile(Games);
 
 
     }
@@ -93,7 +101,7 @@ public class Storage
     public void RemoveInquiry(Inquiry inquiry)
     {
         Inquiries.Remove(inquiry);
-
+        dataHandler.SaveInquiriesToFile(Inquiries);
 
     }
 

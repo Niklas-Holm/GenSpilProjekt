@@ -5,7 +5,7 @@ using System.Transactions;
 namespace Genspil;
 
 
-// Enum til at fastsætte parametre for spils stand.
+// Enum til at fastsï¿½tte parametre for spils stand.
 public enum Condition
     {
 A,
@@ -84,5 +84,27 @@ public class Game
                         + $"\nGame Players: {this.MinPlayer}-{this.MaxPlayer}"
                         + $"\nGame Genre: {this.Genre}");
     }
+    
+    public override string ToString()
+    {
+        return $"{Id},{Name},{Condition},{Price},{MinPlayer},{MaxPlayer},{Genre}";
+    }
+    
+    public static Game FromString(string data)
+    {
+        var parts = data.Split(',');
+        return new Game(
+            name: parts[1],
+            condition: Enum.Parse<Condition>(parts[2]),
+            price: double.Parse(parts[3]),
+            minPlayer: int.Parse(parts[4]),
+            maxPlayer: int.Parse(parts[5]),
+            genre: parts[6]
+        )
+        {
+            Id = int.Parse(parts[0])
+        };
+    }
+
 
 }
