@@ -13,21 +13,21 @@ class Program
         while (running)
         {
             Console.Clear();
-            Console.WriteLine("Velkommen til Genspil appen!");
-            Console.WriteLine("1. Se liste over spil.");
-            Console.WriteLine("2. Administrer Spil.");
-            Console.WriteLine("3. Opret forespørgsel.");// Midlertidig.
-            Console.WriteLine("4. Search Game."); //Midlertidig
+            Console.WriteLine("Welcome to the 'GenSpil' app!");
+            Console.WriteLine("1. View list of games.");
+            Console.WriteLine("2. Administer Games.");
+            Console.WriteLine("3. Make Inquiry.");
+            Console.WriteLine("4. Search Game.");
             Console.WriteLine("0. Exit.");
 
-            Console.Write("\nHvilken funktion vil du benytte? ");
+            Console.Write("\nWhat function would you like to use? ");
 
             string inputStr = Console.ReadLine();
             int input;
 
             if (!int.TryParse(inputStr, out input))
             {
-                Console.WriteLine("Ugyldigt input. Tryk Enter for at prøve igen.");
+                Console.WriteLine("Invalid input. Press 'Enter' to try again.");
                 Console.ReadLine();
                 continue;
             }
@@ -44,7 +44,7 @@ class Program
                     Console.WriteLine("\nWhat do you wish to do?\n");
 
                     Console.WriteLine("1. Generate Text File List.\n" +
-                                      "2. Filter List.\n" +
+                                      "2. Sort List.\n" +
                                       "0. Exit. ");
 
                     int listSubMenuInput = Int32.Parse(Console.ReadLine());
@@ -55,7 +55,7 @@ class Program
                             Console.WriteLine("List Generated.");
                             break;
                         case 2:
-                            Console.WriteLine("How do you want to filter list?");
+                            Console.WriteLine("How do you want to sort the list?");
                             Console.WriteLine("1. Name. \n" +
                                               "2. Condition. \n" +
                                               "3. Price.\n" +
@@ -82,7 +82,7 @@ class Program
                                         case "n":
                                             
                                             break;
-                                            //Kommer her
+                                            
                                     }
                                     break;
                                 case 2:
@@ -101,7 +101,7 @@ class Program
                                         case "n":
 
                                             break;
-                                            //Kommer her
+                                            
                                     }
 
 
@@ -123,7 +123,7 @@ class Program
                                         case "n":
 
                                             break;
-                                            //Kommer her
+                                            
                                     }
 
 
@@ -144,7 +144,7 @@ class Program
                                         case "n":
 
                                             break;
-                                            //Kommer her
+                                            
                                     }
 
 
@@ -165,7 +165,7 @@ class Program
                                         case "n":
 
                                             break;
-                                            //Kommer her
+                                            
                                     }
 
 
@@ -186,7 +186,7 @@ class Program
                                         case "n":
 
                                             break;
-                                            //Kommer her
+                                            
                                     }
 
 
@@ -196,7 +196,7 @@ class Program
                             }
                             break;
                     }
-                    Console.WriteLine("Her er listen over spil...");
+                    Console.WriteLine("Here's the list of games in storage.");
                     gameStorage.PrintAllGames(gameStorage.Games);
                     break;
                 case 2:
@@ -206,7 +206,7 @@ class Program
                     {
                         Console.Clear();
 
-                        Console.WriteLine("1. Tilføj Spil.");
+                        Console.WriteLine("1. Add Game.");
                         Console.WriteLine("2. Remove Game.");
                         Console.WriteLine("0. Exit to Main Menu");
                         Console.WriteLine("\nWhat do you wish to do?");
@@ -215,7 +215,7 @@ class Program
 
                         if (!int.TryParse(adminInputStr, out adminInput))
                         {
-                            Console.WriteLine("Ugyldigt input. Tryk Enter for at prøve igen.");
+                            Console.WriteLine("Invalid input. Press 'Enter' to try again.");
                             Console.ReadLine();
                             continue;
                         }
@@ -250,11 +250,11 @@ class Program
                     break;
                 case 0:
                     // Afslut
-                    Console.WriteLine("Farvel!");
+                    Console.WriteLine("Bye!");
                     running = false;
                     break;
                 default:
-                    Console.WriteLine("Ugyldigt valg. Tryk Enter for at prøve igen.");
+                    Console.WriteLine("Invalid input. Press 'Enter' to try again.");
                     break;
             }
 

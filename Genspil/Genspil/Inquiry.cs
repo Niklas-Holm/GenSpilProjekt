@@ -37,7 +37,7 @@ namespace Genspil
         }
 
         // Metode til at printe Inquiry
-        public void PrintCustomerInfo()
+        public void PrintInquiryInfo()
         {
             Console.WriteLine($"Id: {this.Id}"
                             + $"\nGame Name: {this.GameName}"
