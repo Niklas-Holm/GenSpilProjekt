@@ -108,15 +108,15 @@ public class Storage
     // Metode til at finde specifikt spil.
     public void SearchGameByName(string findMatchingGame)
     {
-        
+        int amount = 0;
         Console.WriteLine($"\nAll games of the name {findMatchingGame}");
         Console.WriteLine("---------------------------");
         foreach (Game game in Games)
-       
-        {
 
+        {
             if (game.Name.ToLower() == findMatchingGame.ToLower())
             {
+                amount++;
                 
                 game.PrintGameDetails();
 
@@ -124,6 +124,8 @@ public class Storage
                 
             }
         }
+        
+        Console.WriteLine($"{amount} games found with name {findMatchingGame}");
         
     }
     public void SearchGameById(int Id)
