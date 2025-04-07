@@ -310,6 +310,86 @@ public class Storage
 
     }
 
+    public void SortGamesBy(int sortCategory, int sortBy)
+    {
+        List<Game> sortedCategory = new List<Game>();
+
+        while (true)
+        {
+            if (sortBy == 1)
+            {
+                //Category sorting
+                switch (sortCategory)
+                {
+                    //Name
+                    case 1:
+                        sortedCategory = Games.OrderBy(g => g.Name).ToList();
+                        break;
+                    //Condition
+                    case 2:
+                        sortedCategory = Games.OrderBy(g => g.Condition).ToList();
+                        break;
+                    //Price
+                    case 3:
+                        sortedCategory = Games.OrderBy(g => g.Price).ToList();
+                        break;
+                    //Min Player
+                    case 4:
+                        sortedCategory = Games.OrderBy(g => g.MinPlayer).ToList();
+                        break;
+                    //Max Player
+                    case 5:
+                        sortedCategory = Games.OrderBy(g => g.MaxPlayer).ToList();
+                        break;
+                    //Genre
+                    case 6:
+                        sortedCategory = Games.OrderBy(g => g.Genre).ToList();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Category. Try Again");
+                        continue;
+                }
+            }
+
+            else if (sortBy == 2)
+            {
+                switch (sortCategory)
+                {
+                    //Name
+                    case 1:
+                        sortedCategory = Games.OrderByDescending(g => g.Name).ToList();
+                        break;
+                    //Condition
+                    case 2:
+                        sortedCategory = Games.OrderByDescending(g => g.Condition).ToList();
+                        break;
+                    //Price
+                    case 3:
+                        sortedCategory = Games.OrderByDescending(g => g.Price).ToList();
+                        break;
+                    //Min Player
+                    case 4:
+                        sortedCategory = Games.OrderByDescending(g => g.MinPlayer).ToList();
+                        break;
+                    //Max Player
+                    case 5:
+                        sortedCategory = Games.OrderByDescending(g => g.MaxPlayer).ToList();
+                        break;
+                    //Genre
+                    case 6:
+                        sortedCategory = Games.OrderByDescending(g => g.Genre).ToList();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Category. Try Again");
+                        continue;
+                }
+            }
+
+            PrintAllGames(sortedCategory);
+            break;
+        }
+    }
+
 
     // Inquiries 
     public List<Inquiry> Inquiries;
