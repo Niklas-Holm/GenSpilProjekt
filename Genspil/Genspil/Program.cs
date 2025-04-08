@@ -348,6 +348,24 @@ class Program
 
 
     }
+
+    //Method for validating user input as in
+    public static int IntInputHandler(string message)
+    {
+        int intInput;
+
+        while (true)
+        {
+            Console.Write(message);
+
+            if (int.TryParse(Console.ReadLine(), out intInput))
+            {
+                return intInput;
+            }
+
+            Console.WriteLine("Invalid Input. Try Again.");
+        }
+    }
 }
     
 
