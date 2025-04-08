@@ -10,6 +10,7 @@ public class DataHandler
         gamesFilePath = gamesPath;
         inquiriesFilePath = inquiriesPath;
     }
+    
 
     public void SaveGamesToFile(List<Game> games)
     {
@@ -61,5 +62,27 @@ public class DataHandler
             }
         }
         return inquiries;
+    }
+    
+    public void SaveGamesAsPrintFile(List<Game> games)
+    {
+        string folderPath = "print_files";
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string fileName = $"games_{timestamp}.txt";
+        string fullPath = Path.Combine(folderPath, fileName);
+        
+        using (StreamWriter writer = new StreamWriter(fullPath))
+        {
+            foreach (var game in games)
+            {
+                writer.WriteLine(game.ToString());
+            }
+        }
     }
 }

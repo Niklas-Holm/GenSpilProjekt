@@ -8,7 +8,7 @@ class Program
     static void Main(string[] args)
     {
         Storage storage = new Storage();
-       
+        
         bool running = true;
 
         while (running)
@@ -23,16 +23,8 @@ class Program
 
             Console.Write("\nWhat function would you like to use? ");
 
-            string inputStr = Console.ReadLine();
-            int input;
-
-            if (!int.TryParse(inputStr, out input))
-            {
-                Console.WriteLine("Invalid input. Press 'Enter' to try again.");
-                Console.ReadLine();
-                continue;
-            }
-
+            int input = GetValidInt("Choose option: ", 0, 4);
+            
             switch (input)
             {
                 case 1:
@@ -48,21 +40,14 @@ class Program
                                       "2. Sort List.\n" +
                                       "0. Exit. ");
 
-                    string listSubMenuInput = Console.ReadLine();
-                    int listSubMenuInputInt;
+                    int listSubMenuInput = GetValidInt("Choose option: ", 0, 2);
 
-                    if (!int.TryParse(listSubMenuInput, out listSubMenuInputInt))
-                    {
-                        Console.WriteLine("Invalid input. Press 'Enter' to try again.");
-                        Console.ReadLine();
-                        continue;
-                    }
-
-                    switch (listSubMenuInputInt)
+                    switch (listSubMenuInput)
                     {
                         //Missing implementation for list generation
                         case 1:
                             Console.WriteLine("List Generated.");
+                            storage.SaveGamesAsPrintFile(storage.Games);
                             break;
                         //Sort list
                         case 2:
@@ -74,14 +59,17 @@ class Program
                                               "5. Max Player. \n" +
                                               "6. Genre. \n" +
                                               "0. Exit.");
-                            int filterGamesByInput = Int32.Parse(Console.ReadLine());
+                            
+                            int filterGamesByInput = GetValidInt("Choose option: ", 0, 6);
 
                             Console.WriteLine("In What Order?\n" +
                                                       "1. Ascending\n" +
                                                       "2. Descending");
-                            int nameOrder = Int32.Parse(Console.ReadLine());
+                            int nameOrder = GetValidInt("Choose option: ", 1, 2);
+                            
+                            List<Game> sortedGameList = storage.SortGamesBy(filterGamesByInput, nameOrder);
 
-                            storage.SortGamesBy(filterGamesByInput, nameOrder);
+                            storage.PrintAllGames(sortedGameList);
 
                             Console.WriteLine("Generate text file for the sorted list? (y/n): ");
                             string generateNameTxtInput = Console.ReadLine().ToLower();
@@ -89,11 +77,10 @@ class Program
                             {
                                 case "y":
                                     Console.WriteLine("Generating File");
+                                    storage.SaveGamesAsPrintFile(sortedGameList);
                                     break;
                                 case "n":
-
                                     break;
-
                             }
                             break;
                     }
@@ -111,15 +98,8 @@ class Program
                         Console.WriteLine("2. Remove Game.");
                         Console.WriteLine("0. Exit to Main Menu");
                         Console.WriteLine("\nWhat do you wish to do?");
-                        string adminInputStr = Console.ReadLine();
-                        int adminInput;
-
-                        if (!int.TryParse(adminInputStr, out adminInput))
-                        {
-                            Console.WriteLine("Invalid input. Press 'Enter' to try again.");
-                            Console.ReadLine();
-                            continue;
-                        }
+                        int adminInput = GetValidInt("Choose option: ", 0, 2);
+                        
                         switch (adminInput)
                         {
                             case 1:
@@ -230,7 +210,7 @@ class Program
 
 
 
-                        int inquiryAdminInput = Int32.Parse(Console.ReadLine());
+                        int inquiryAdminInput = GetValidInt("Choose option: ", 0, 3);
 
                         switch (inquiryAdminInput)
                         {
@@ -323,6 +303,7 @@ class Program
                                 Console.ReadLine();
                                 break;
                             case 0:
+                                inquiryAdminRunning = false;
                                 break;
                         }
                         
@@ -353,8 +334,22 @@ class Program
 
         }
 
+        
 
+    }
 
+    static int GetValidInt(string prompt, int min = int.MinValue, int max = int.MaxValue)
+    {
+        int result;
+        while (true)
+        {
+            Console.Write(prompt);
+            if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
+            {
+                return result;
+            }
+            Console.WriteLine("Invalid input. Try again.");
+        }
     }
 
     //Method for validating user input as in

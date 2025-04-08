@@ -166,7 +166,7 @@ public class Storage
 
     }
 
-    public void SortGamesBy(int sortCategory, int sortBy)
+    public List<Game> SortGamesBy(int sortCategory, int sortBy)
     {
         List<Game> sortedCategory = new List<Game>();
 
@@ -241,8 +241,7 @@ public class Storage
                 }
             }
 
-            PrintAllGames(sortedCategory);
-            break;
+            return(sortedCategory);
         }
     }
 
@@ -259,8 +258,10 @@ public class Storage
         }
     }
 
-
-
+    public void SaveGamesAsPrintFile(List<Game> games)
+    {
+        dataHandler.SaveGamesAsPrintFile(games);
+    }
 }
 
 
