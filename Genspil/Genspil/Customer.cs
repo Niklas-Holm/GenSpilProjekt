@@ -11,7 +11,7 @@ namespace Genspil
         public string Name { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
-        public string AdditionalInfo { get; set; }
+        public string? AdditionalInfo { get; set; } //"?" at the end of string is to show that it's optional.
 
         // Constructor 
         public Customer(string name, string email, int phone, string additionalInfo)

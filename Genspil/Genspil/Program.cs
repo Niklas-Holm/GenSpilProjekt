@@ -48,9 +48,17 @@ class Program
                                       "2. Sort List.\n" +
                                       "0. Exit. ");
 
-                    int listSubMenuInput = Int32.Parse(Console.ReadLine());
+                    string listSubMenuInput = Console.ReadLine();
+                    int listSubMenuInputInt;
 
-                    switch (listSubMenuInput)
+                    if (!int.TryParse(listSubMenuInput, out listSubMenuInputInt))
+                    {
+                        Console.WriteLine("Invalid input. Press 'Enter' to try again.");
+                        Console.ReadLine();
+                        continue;
+                    }
+
+                    switch (listSubMenuInputInt)
                     {
                         //Missing implementation for list generation
                         case 1:
